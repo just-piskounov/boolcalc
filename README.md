@@ -1,98 +1,79 @@
 # BoolCalc
 
-A command-line utility for evaluating boolean expressions and generating truth tables.
+A Boolean algebra calculator with both CLI and GUI interfaces.
 
-## Overview
+## Description
 
-BoolCalc is a lightweight tool designed to parse and evaluate boolean expressions with support for variables, logical operators, and truth table generation. Perfect for students learning boolean algebra, computer science enthusiasts, or anyone who needs to quickly validate boolean logic.
+BoolCalc is a Python tool that allows you to work with Boolean expressions. It can simplify Boolean expressions and generate truth tables through both a command-line interface and a terminal-based GUI powered by Textual.
 
 ## Features
 
-- Parse and evaluate boolean expressions with variables
-- Generate complete truth tables for expressions
-- Support for standard boolean operators:
-  - AND (∧, &, *)
-  - OR (∨, |, +)
-  - NOT (¬, ~, !)
-  - XOR (⊕, ^)
-  - Implication (→, ->)
-  - Biconditional/Equivalence (↔, <->)
-- Parentheses for expression grouping
-- Variable auto-detection
+- Parse and evaluate Boolean expressions
+- Generate truth tables for expressions
+- Simplify Boolean expressions using the Quine-McCluskey algorithm
+- Terminal-based GUI interface
+- Support for basic Boolean operators:
+  - AND (`*`)
+  - OR (`+`)
+  - NOT (`~`)
 
 ## Installation
 
-Ensure you have Python 3.6+ installed, then:
+```bash
+# Requires Python 3.10 or higher
+pip install boolcalc
+```
+
+Or install from source:
 
 ```bash
-# Clone the repository
 git clone https://github.com/just-piskounov/boolcalc.git
 cd boolcalc
-
-# Install dependencies (if any)
-# pip install -r requirements.txt
+pip install .
 ```
 
 ## Usage
 
-### Basic Boolean Expression Evaluation
+### GUI Version
+
+Launch the interactive terminal UI:
 
 ```bash
-python boolcalc.py "A & B | ~C"
+boolcalc
 ```
 
-### Generate Truth Table
+### CLI Version
 
-```bash
-python boolcalc.py "A -> (B & C)" --table
+You can also use the package programmatically:
+
+```python
+from boolcalc.core import BooleanExpression
+
+# Create a Boolean expression
+expr = BooleanExpression("x*y + ~x*z")
+
+# Simplify the expression
+simplified = expr.simplify()
+print(f"Simplified: {simplified}")
+
+# Generate a truth table
+variables = sorted(expr.get_variables())
+print(" | ".join(variables + ["Result"]))
+print("-" * (len(variables) * 4 + 8))
+
+from itertools import product
+for values in product([False, True], repeat=len(variables)):
+    inputs = dict(zip(variables, values))
+    result = expr.evaluate(inputs)
+    values_str = " | ".join(str(int(v)) for v in values)
+    print(f"{values_str} | {int(result)}")
 ```
 
-### Available Operators
+## Dependencies
 
-| Operation    | Symbols      | Precedence |
-|--------------|--------------|------------|
-| NOT          | ¬, ~, !      | Highest    |
-| AND          | ∧, &, *      | High       |
-| XOR          | ⊕, ^         | Medium     |
-| OR           | ∨, \|, +     | Medium     |
-| Implication  | →, ->        | Low        |
-| Biconditional| ↔, <->       | Lowest     |
-
-## Examples
-
-### Simple Expression
-```bash
-python boolcalc.py "A & B"
-```
-
-### Complex Expression with Multiple Variables
-```bash
-python boolcalc.py "(A | B) & ~(C -> D)"
-```
-
-### Truth Table for an Expression
-```bash
-python boolcalc.py "A ^ B" --table
-```
-
-Output:
-```
-| A | B | A ^ B |
-|---|---|-------|
-| 0 | 0 |   0   |
-| 0 | 1 |   1   |
-| 1 | 0 |   1   |
-| 1 | 1 |   0   |
-```
-
-## Contributing
-
-Contributions are welcome! Feel free to submit a Pull Request.
+- textual >= 0.34.0
+- rich >= 13.0
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
-
-## Acknowledgments
-
-- Created by [just-piskounov](https://github.com/just-piskounov)
+Open source
