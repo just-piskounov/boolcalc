@@ -6,6 +6,10 @@ A Boolean algebra calculator with both CLI and GUI interfaces.
 
 BoolCalc is a Python tool that allows you to work with Boolean expressions. It can simplify Boolean expressions and generate truth tables through both a command-line interface and a terminal-based GUI powered by Textual.
 
+## Screenshot
+
+![BoolCalc Screenshot](screenshot.png)
+
 ## Features
 
 - Parse and evaluate Boolean expressions
