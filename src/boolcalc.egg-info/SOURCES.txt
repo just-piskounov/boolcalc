@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+src/boolcalc/__init__.py
+src/boolcalc/core.py
+src/boolcalc/gui.py
+src/boolcalc.egg-info/PKG-INFO
+src/boolcalc.egg-info/SOURCES.txt
+src/boolcalc.egg-info/dependency_links.txt
+src/boolcalc.egg-info/entry_points.txt
+src/boolcalc.egg-info/requires.txt
+src/boolcalc.egg-info/top_level.txt

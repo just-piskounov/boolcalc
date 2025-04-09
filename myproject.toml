@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "boolcalc"
+version = "1.0.0"
+description = "Boolean Algebra Calculator with GUI"
+authors = [{name = "Your Name", email = "your.email@example.com"}]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "textual>=0.34.0",
+    "rich>=13.0"
+]
+
+[project.scripts]
+bincalc = "bincalc.gui.textual_app:main"
